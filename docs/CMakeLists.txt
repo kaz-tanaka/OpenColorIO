@@ -76,9 +76,48 @@ list(APPEND DOCFILES ${CMAKE_SOURCE_DIR}/share/nuke/ocionuke/viewer.py)
 CopyFiles(RSTDOC ${DOCFILES})
 
 message(STATUS "Extracting .rst files from C++ headers")
-ExtractRst(${CMAKE_SOURCE_DIR}/export/OpenColorIO/OpenColorIO.h developers/api/OpenColorIO.rst)
-ExtractRst(${CMAKE_SOURCE_DIR}/export/OpenColorIO/OpenColorTransforms.h developers/api/OpenColorTransforms.rst)
-ExtractRst(${CMAKE_SOURCE_DIR}/export/OpenColorIO/OpenColorTypes.h developers/api/OpenColorTypes.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/export/OpenColorIO/OpenColorIO.h developers/api/OpenColorIO.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/export/OpenColorIO/OpenColorTransforms.h developers/api/OpenColorTransforms.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/export/OpenColorIO/OpenColorTypes.h developers/api/OpenColorTypes.rst)
+ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/OpenColorIO.h developers/api/OpenColorIO2.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyAllocationTransform.cpp developers/api/PyAllocationTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyCDLTransform.cpp developers/api/PyCDLTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyColorSpace.cpp developers/api/PyColorSpace.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyColorSpaceTransform.cpp developers/api/PyColorSpaceTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyConfig.cpp developers/api/PyConfig.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyConstants.cpp developers/api/PyConstants.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyContext.cpp developers/api/PyContext.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyDisplayTransform.cpp developers/api/PyDisplayTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyExponentTransform.cpp developers/api/PyExponentTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyFileTransform.cpp developers/api/PyFileTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyGroupTransform.cpp developers/api/PyGroupTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyLogTransform.cpp developers/api/PyLogTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyLook.cpp developers/api/PyLook.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyLookTransform.cpp developers/api/PyLookTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyMain.cpp developers/api/PyMain.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyMatrixTransform.cpp developers/api/PyMatrixTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyProcessor.cpp developers/api/PyProcessor.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyTransform.cpp developers/api/PyTransform.rst)
+#ExtractRst(${CMAKE_SOURCE_DIR}/src/pyglue/PyUtil.cpp developers/api/PyUtil.rst)
+
+#message(STATUS "Merging related python API .rst files")
+
+#ADD_CUSTOM_COMMAND(OUTPUT developers/api/PyAPIConfig.rst
+#                   COMMAND cat developers/api/PyAllocationTransform.rst developers/api/PyCDLTransform.rst > developers/api/PyAPIConfig.rst
+#                   DEPENDS
+#                       developers/api/PyAllocationTransform.rst
+#                       developers/api/PyCDLTransform.rst
+#                   COMMENT "Creating PyAPIConfig.rst")
+#ADD_CUSTOM_COMMAND(OUTPUT developers/api/PyAPIProcessors.rst
+#                   COMMAND cat developers/api/PyLook.rst > developers/api/PyAPIProcessors.rst
+#                   DEPENDS
+#                       developers/api/PyLook.rst
+#                   COMMENT "Creating PyAPIProcessors.rst")
+
+#cat developers/api/PyAllocationTransform.rst developers/api/PyCDLTransform.rst developers/api/PyColorSpace.rst developers/api/PyColorSpaceTransform.rst developers/api/PyConfig.rst developers/api/PyConstants.rst developers/api/PyContext.rst developers/api/PyDisplayTransform.rst developers/api/PyExponentTransform.rst developers/api/PyFileTransform.rst developers/api/PyGroupTransform.rst > developers/api/PyAPIConfig.rst
+#cat developers/api/PyLogTransform.rst developers/api/PyLook.rst > developers/api/PyAPIProcessors.rst
+#cat developers/api/PyLookTransform.rst developers/api/PyMain.rst developers/api/PyMatrixTransform.rst > developers/api/PyAPIOthers.rst
+#cat developers/api/PyProcessor.rst developers/api/PyTransform.rst developers/api/PyUtil.rst > developers/api/PyAPITransforms.rst
 
 add_custom_target(doc ALL
     COMMAND PYTHONPATH=${PYTHONPATH} ${EXTDIST_BINPATH}/sphinx-build -b html . ${CMAKE_CURRENT_BINARY_DIR}/build-html
@@ -88,7 +127,7 @@ add_custom_target(doc ALL
         developers/api/OpenColorIO.rst
         developers/api/OpenColorTransforms.rst
         developers/api/OpenColorTypes.rst
-        ${RSTDOC_OUTPUT}
+#        developers/api/PyAPIConfig.rst
     COMMENT "Building html docs"
     SOURCES ${DOCFILES})
 
