@@ -148,13 +148,35 @@ OCIO_NAMESPACE_ENTER
     
     // This take the 4x4 inverse.
     // Return whether the inverse has succeeded.
+    // Supports in-place operations
     bool GetM44Inverse(float* out44, const float* m44);
     
     bool IsM44Identity(const float* m44);
     
     bool IsM44Diagonal(const float* m44);
+    
     void GetM44Diagonal(float* out4, const float* m44);
     
+    // Supports in-place operations
+    void GetM44Product(float* product_out, const float* m1, const float* m2);
+    
+    // Supports in-place operations
+    void GetM44V4Product(float* product_out, const float* m, const float* v);
+    
+    // Supports in-place operations
+    void GetV4Sum(float* sum_out, const float* v1, const float* v2);
+    
+    // Supports in-place operations
+    void mxb_combine(float* mout, float* vout,
+                     const float* m1, const float* v1,
+                     const float* m2, const float* v2);
+
+    // Supports in-place operations
+    void mxb_eval(float* yout, float* m, float* x, float* v);
+    
+    // Supports in-place operations
+    void mxb_invert(float* mout, float* vout, float* m_, float* v_);
+
 }
 OCIO_NAMESPACE_EXIT
 
